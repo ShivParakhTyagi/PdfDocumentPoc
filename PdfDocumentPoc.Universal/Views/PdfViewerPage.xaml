@@ -1,0 +1,107 @@
+﻿<Page
+    x:Class="PdfDocumentPoc.Universal.Views.PdfViewerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PdfDocumentPoc.Universal.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Padding="4" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Height="48">
+                <Grid Grid.Column="0">
+                    <Button FontFamily="Segoe MDL2 Assets"  Content="&#xE700;" Click="HamburgerMenuButton_Clicked" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" >
+                <Button x:Name="FilePickerButton"  Content="Pick Pdf Files" Click="FilePickerButton_OnClick" />
+                <Button x:Name="RefreshButton"  Content="Refresh" Click="RefreshButton_OnClick" HorizontalAlignment="Right" />
+            </Grid>
+        </Grid>
+        <!--<ScrollViewer>-->
+        <Grid  Grid.Row="1" Padding="4">
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <SplitView x:Name="HamburgerMenu" DisplayMode="CompactOverlay" CompactPaneLength="100"  >
+                <SplitView.Pane>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ListView x:Name="PdfPagesTextPreviewListView" Grid.Column="0" SelectionChanged="PdfPagesPreviewListView_OnSelectionChanged" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="0" Width="80">
+                                        <TextBlock Grid.Row="0" Text="{Binding Title}" TextWrapping="WrapWholeWords" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <ListView x:Name="PdfPagesPreviewListView" Grid.Column="1" SelectionChanged="PdfPagesPreviewListView_OnSelectionChanged" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="8" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition ></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="{Binding Title}"/>
+                                        <Image Grid.Row="1" Source="{Binding PdfPage,Converter={StaticResource PdfPagetoBitmapImageConverter}}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </SplitView.Pane>
+                <SplitView.Content>
+                    <Grid>
+                        <ListView x:Name="PdfPagesListView" Grid.Column="1" HorizontalAlignment="Stretch" Visibility="Collapsed">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="8" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition ></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="{Binding Title}"/>
+                                        <Image Grid.Row="1" Source="{Binding PdfPage,Converter={StaticResource PdfPagetoBitmapImageConverter}}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Grid Grid.Column="1" Visibility="Visible" >
+                            <Grid Padding="8" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="{Binding Title}"/>
+                                <Image Grid.Row="1" Source="{Binding PdfPage,Converter={StaticResource PdfPagetoBitmapImageConverter}}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </SplitView.Content>
+            </SplitView>
+        </Grid>
+        <!--</ScrollViewer>-->
+        <Grid Grid.Row="2" Padding="0,4">
+            <TextBlock x:Name="StatusTextBlock" TextWrapping="WrapWholeWords" Foreground="Red" />
+        </Grid>
+    </Grid>
+</Page>
