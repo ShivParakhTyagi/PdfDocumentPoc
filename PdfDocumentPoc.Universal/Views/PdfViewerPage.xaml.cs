@@ -116,6 +116,7 @@ namespace PdfDocumentPoc.Universal.Views
                     PdfPagesTextPreviewListView.SelectedItem = page;
                     PdfPagesPreviewListView.ScrollIntoView(PdfPagesPreviewListView.SelectedItem);
                     PdfPagesTextPreviewListView.ScrollIntoView(PdfPagesTextPreviewListView.SelectedItem);
+                    page.Reload();
                 }
             }
         }
