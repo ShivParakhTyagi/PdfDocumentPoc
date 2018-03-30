@@ -31,7 +31,6 @@ namespace PdfDocumentPoc.Universal
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //Frame.Navigate(typeof(PdfViewerPage));
             base.OnNavigatedTo(e);
         }
     }
